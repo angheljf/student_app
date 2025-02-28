@@ -1,70 +1,91 @@
-# Student Application
+# Student Information App
 
 A simple web application developed for students to see how the backend and frontend work together. This application provides a web form to collect student information (name and email) and stores it in a PostgreSQL database. It uses Flask for the backend server, SQLAlchemy for database operations, JavaScript for asynchronous form submission, and HTML/CSS for the user interface.
 
-## Overview
-
-This application provides a web form to collect student information (name and email) and stores it in a PostgreSQL database. It uses:
-- Flask for the backend server
-- SQLAlchemy for database operations
-- JavaScript for asynchronous form submission
-- HTML/CSS for the user interface
-
 ## Prerequisites
 
-- Python 3.7+
-- PostgreSQL database server
-- pip (Python package manager)
+Before running this application, ensure you have the following:
 
-## Installation
+-   Python 3.6+
+-   PostgreSQL database
+-   `pip` package installer
 
-1. Clone this repository or download the source code:
-   ```
-   git clone <repository-url>
-   cd student_app
-   ```
+## Setup
 
-2. Create and activate a virtual environment (optional but recommended):
-   ```
-   python -m venv venv
-   # On Windows
-   venv\Scripts\activate
-   # On macOS/Linux
-   source venv/bin/activate
-   ```
+1.  **Clone the repository:**
 
-3. Install the required packages:
-   ```
-   pip install flask sqlalchemy psycopg2
-   ```
+    ```bash
+    git clone <repository_url>
+    cd student_app
+    ```
 
-## Database Setup
+2.  **Create a virtual environment:**
 
-1. Create a PostgreSQL database:
-   ```sql
-   CREATE DATABASE student_app_db;
-   ```
+    ```bash
+    python -m venv venv
+    ```
 
-2. Set up your database credentials in `app.py` or use environment variables:
-   ```python
-   DB_HOST = "localhost"
-   DB_NAME = "student_app_db"
-   DB_USER = "postgres"
-   DB_PASSWORD = "postgres"
-   DB_PORT = "5432"
-   ```
+3.  **Activate the virtual environment:**
 
-## Running the Application
+    -   On Windows:
 
-1. Start the Flask development server:
-   ```
-   python app.py
-   ```
+        ```bash
+        venv\Scripts\activate
+        ```
 
-2. Open your web browser and navigate to:
-   ```
-   http://localhost:5000
-   ```
+    -   On macOS and Linux:
+
+        ```bash
+        source venv/bin/activate
+        ```
+
+4.  **Install the dependencies:**
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+5.  **Configure the database:**
+
+    -   Create a `.env` file in the root directory of the application.
+    -   Add the following environment variables, replacing the values with your actual database credentials:
+
+        ```
+        DB_HOST=<your_db_host>
+        DB_NAME=<your_db_name>
+        DB_USER=<your_db_user>
+        DB_PASSWORD=<your_db_password>
+        DB_PORT=<your_db_port>
+        ```
+
+## Usage
+
+1.  **Run the application:**
+
+    ```bash
+    python app.py
+    ```
+
+2.  **Open the application in your web browser:**
+
+    -   Navigate to `http://127.0.0.1:5000/` (or the address shown in the console when you run the app).
+
+3.  **Submit the form:**
+
+    -   Enter your name and email in the form fields.
+    -   Click the "Submit" button.
+
+4.  **Verify the submission:**
+
+    -   A success message will be displayed upon successful submission.
+    -   The data will be stored in the `student_info` table in your PostgreSQL database.
+
+## Technologies Used
+
+-   Flask: Web framework
+-   SQLAlchemy: ORM for database interaction
+-   PostgreSQL: Database
+-   dotenv: For managing environment variables
 
 ## Project Structure
 
@@ -80,6 +101,12 @@ student_app/
 └── templates/
     └── index.html         # HTML form template
 ```
+
+## API Endpoints
+
+- `GET /` - Renders the student information form
+- `POST /submit` - Endpoint for submitting student data
+
 ## Usage
 
 1. Fill out the student information form with name (required) and email (optional).
