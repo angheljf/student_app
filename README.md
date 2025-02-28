@@ -44,8 +44,20 @@ Before running this application, ensure you have the following:
     ```bash
     pip install -r requirements.txt
     ```
+5. **Create the database:**
 
-5.  **Configure the database:**
+    -   Create a PostgreSQL database.
+    -   Run the following SQL query to create the `student_info` table:
+
+        ```sql
+        CREATE TABLE student_info (
+            id SERIAL PRIMARY KEY,
+            name VARCHAR(100) NOT NULL,
+            email VARCHAR(100)
+        );
+        ```
+
+6.  **Configure the database:**
 
     -   Create a `.env` file in the root directory of the application.
     -   Add the following environment variables, replacing the values with your actual database credentials:
