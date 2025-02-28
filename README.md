@@ -1,6 +1,6 @@
 # Student Application
 
-A simple web application for collecting and storing student information using Flask and PostgreSQL.
+A simple web application developed for students to see how the backend and frontend work together. This application provides a web form to collect student information (name and email) and stores it in a PostgreSQL database. It uses Flask for the backend server, SQLAlchemy for database operations, JavaScript for asynchronous form submission, and HTML/CSS for the user interface.
 
 ## Overview
 

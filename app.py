@@ -1,32 +1,28 @@
 from flask import Flask, request, jsonify, render_template
 from sqlalchemy import create_engine, Column, Integer, String, MetaData
-from sqlalchemy.orm import sessionmaker, declarative_base  # Updated import here
+from sqlalchemy.orm import sessionmaker, declarative_base
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__, 
            static_folder='static',
            template_folder='templates')
 
-# Database Configuration (Replace with your actual credentials)
-DB_HOST = "localhost"  # Or your PostgreSQL server address
-DB_NAME = "student_app_db"
-DB_USER = "postgres"  # Replace with your PostgreSQL username
-DB_PASSWORD = "postgres" # Replace with your PostgreSQL password
-DB_PORT = "5432"  # Default port for PostgreSQL
+# Database Configuration (loaded from .env)
+DB_HOST = os.getenv("DB_HOST")
+DB_NAME = os.getenv("DB_NAME")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_PORT = os.getenv("DB_PORT")
 
 DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 engine = create_engine(DATABASE_URL)
 metadata = MetaData()
 
-# Define the student_info table using SQLAlchemy's Table object (Core)
-# student_info_table = Table(
-#     'student_info', metadata,
-#     Column('id', Integer, primary_key=True),
-#     Column('name', String(255), nullable=False),
-#     Column('email', String(255))
-# )
-
-# Alternatively, you could use SQLAlchemy ORM (Declarative Base) to define the table as a class:
 Base = declarative_base()
 class StudentInfo(Base):
     __tablename__ = 'student_info'
@@ -56,12 +52,6 @@ def submit_form():
 
     session = Session() # Create a session instance
     try:
-        # Using SQLAlchemy Core (Table object)
-        # stmt = insert(student_info_table).values(name=name, email=email)
-        # session.execute(stmt)
-        # session.commit()  # Save changes to the database
-
-        # If you used SQLAlchemy ORM (Declarative Base), it would look like this:
         new_student = StudentInfo(name=name, email=email)
         session.add(new_student)
         session.commit()
