@@ -2,6 +2,9 @@
 
 A simple web application developed for students to see how the backend and frontend work together. This application provides a web form to collect student information (name and email) and stores it in a PostgreSQL database. It uses Flask for the backend server, SQLAlchemy for database operations, JavaScript for asynchronous form submission, and HTML/CSS for the user interface.
 
+![app_screenshot](img/example1.png)
+![app_screenshot2](img/example2.png)
+
 ## Prerequisites
 
 Before running this application, ensure you have the following:
